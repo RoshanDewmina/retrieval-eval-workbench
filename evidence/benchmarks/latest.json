@@ -1,0 +1,811 @@
+{
+  "schema_version": 1,
+  "source_revision": "cf02cdcc8965958dcf9f1b16436d2d14719faff8",
+  "dirty_tree": false,
+  "command": "make benchmark",
+  "timestamp_utc": "2026-09-07T03:34:46.967236+00:00",
+  "exit_status": 0,
+  "environment": {
+    "os": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "python": "3.13.5"
+  },
+  "inputs": {
+    "dataset_id": "meridian-service-docs",
+    "dataset_version": "1.0.0",
+    "seed": 17
+  },
+  "measured_results": {
+    "dataset": "meridian-service-docs@1.0.0",
+    "results": {
+      "lexical-tfidf": {
+        "retriever": "lexical-tfidf",
+        "split": "test",
+        "question_count": 14,
+        "answerable_question_count": 10,
+        "metrics": {
+          "recall_at_3": 1.0,
+          "mrr_at_3": 1.0,
+          "citation_correct_rate": 1.0,
+          "grounded_answer_rate": 0.9,
+          "unanswerable_correct_rate": 1.0
+        },
+        "examples": [
+          {
+            "question_id": "test-01",
+            "question": "What is the session idle timeout for an operator?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "authentication",
+              "quality",
+              "incidents"
+            ],
+            "answer": "An operator session expires after eight hours of inactivity. Administrators can revoke an active session from the access console.",
+            "citations": [
+              {
+                "document_id": "authentication",
+                "title": "Authentication and sessions",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An operator session expires after eight hours of inactivity. Administrators can revoke an active session from the access console.",
+                "source_url": "https://example.invalid/meridian-service-docs/authentication"
+              }
+            ],
+            "expected_document_ids": [
+              "authentication"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-02",
+            "question": "Which role can create redacted exports?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "roles",
+              "exports",
+              "incidents"
+            ],
+            "answer": "The Operator role can update assigned cases and create redacted exports. The Administrator role manages users, roles, retention settings, and routing rules.",
+            "citations": [
+              {
+                "document_id": "roles",
+                "title": "Roles and access review",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The Operator role can update assigned cases and create redacted exports. The Administrator role manages users, roles, retention settings, and routing rules.",
+                "source_url": "https://example.invalid/meridian-service-docs/roles"
+              }
+            ],
+            "expected_document_ids": [
+              "roles",
+              "exports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-03",
+            "question": "What are the required import columns?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "imports",
+              "authentication",
+              "availability"
+            ],
+            "answer": "Use a CSV file encoded as UTF-8 with a header row. The required columns are case_id, customer_region, opened_at, and summary.",
+            "citations": [
+              {
+                "document_id": "imports",
+                "title": "Importing service records",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Use a CSV file encoded as UTF-8 with a header row. The required columns are case_id, customer_region, opened_at, and summary.",
+                "source_url": "https://example.invalid/meridian-service-docs/imports"
+              }
+            ],
+            "expected_document_ids": [
+              "imports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-04",
+            "question": "Do routing edits move existing cases automatically?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "routing",
+              "roles",
+              "retention"
+            ],
+            "answer": "Routing changes take effect for newly created cases only. Existing cases keep their current owner until reassigned.",
+            "citations": [
+              {
+                "document_id": "routing",
+                "title": "Case routing rules",
+                "line_start": 7,
+                "line_end": 7,
+                "quote": "Routing changes take effect for newly created cases only. Existing cases keep their current owner until reassigned.",
+                "source_url": "https://example.invalid/meridian-service-docs/routing"
+              }
+            ],
+            "expected_document_ids": [
+              "routing"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-05",
+            "question": "How frequently must customers receive an outage update?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "incidents",
+              "notifications",
+              "availability"
+            ],
+            "answer": "Create an incident when a service outage affects more than one customer or when sensitive data may have been exposed. The incident commander records the start time, impact, owner, and next update time.",
+            "citations": [
+              {
+                "document_id": "incidents",
+                "title": "Incident response",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Create an incident when a service outage affects more than one customer or when sensitive data may have been exposed. The incident commander records the start time, impact, owner, and next update time.",
+                "source_url": "https://example.invalid/meridian-service-docs/incidents"
+              }
+            ],
+            "expected_document_ids": [
+              "incidents"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-06",
+            "question": "What does a legal hold prevent?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "retention",
+              "authentication",
+              "availability"
+            ],
+            "answer": "An Administrator can place a legal hold on a case. A legal hold prevents scheduled deletion until the hold is removed.",
+            "citations": [
+              {
+                "document_id": "retention",
+                "title": "Retention and deletion",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An Administrator can place a legal hold on a case. A legal hold prevents scheduled deletion until the hold is removed.",
+                "source_url": "https://example.invalid/meridian-service-docs/retention"
+              }
+            ],
+            "expected_document_ids": [
+              "retention"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-07",
+            "question": "When does an export link expire?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "exports",
+              "authentication",
+              "roles"
+            ],
+            "answer": "An export link expires after twenty-four hours. Downloading an export creates an audit event with the report identifier and operator identifier.",
+            "citations": [
+              {
+                "document_id": "exports",
+                "title": "Reports and exports",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An export link expires after twenty-four hours. Downloading an export creates an audit event with the report identifier and operator identifier.",
+                "source_url": "https://example.invalid/meridian-service-docs/exports"
+              }
+            ],
+            "expected_document_ids": [
+              "exports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-08",
+            "question": "How many downstream retries does ingestion use?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "availability",
+              "imports",
+              "exports"
+            ],
+            "answer": "The ingestion worker retries a transient downstream failure up to three times using exponential backoff. A failed final attempt creates a case for General Review.",
+            "citations": [
+              {
+                "document_id": "availability",
+                "title": "Availability targets",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The ingestion worker retries a transient downstream failure up to three times using exponential backoff. A failed final attempt creates a case for General Review.",
+                "source_url": "https://example.invalid/meridian-service-docs/availability"
+              }
+            ],
+            "expected_document_ids": [
+              "availability"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-09",
+            "question": "How many resolved cases are sampled per Operator each month?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "quality",
+              "routing",
+              "roles"
+            ],
+            "answer": "Supervisors sample ten resolved cases per Operator each month. A review checks that the category, customer region, and resolution notes agree with the case evidence.",
+            "citations": [
+              {
+                "document_id": "quality",
+                "title": "Quality review",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Supervisors sample ten resolved cases per Operator each month. A review checks that the category, customer region, and resolution notes agree with the case evidence.",
+                "source_url": "https://example.invalid/meridian-service-docs/quality"
+              }
+            ],
+            "expected_document_ids": [
+              "quality"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-10",
+            "question": "For how long does the notification service deduplicate an event identifier?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "notifications",
+              "exports",
+              "retention"
+            ],
+            "answer": "The notification service deduplicates notifications by event identifier for thirty days. A delivery failure is retried twice before it is recorded for follow-up.",
+            "citations": [
+              {
+                "document_id": "notifications",
+                "title": "Notifications",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The notification service deduplicates notifications by event identifier for thirty days. A delivery failure is retried twice before it is recorded for follow-up.",
+                "source_url": "https://example.invalid/meridian-service-docs/notifications"
+              }
+            ],
+            "expected_document_ids": [
+              "notifications"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-11",
+            "question": "What exchange rate does Meridian use for invoices?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "imports",
+              "authentication",
+              "notifications"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-12",
+            "question": "Which office provides weekend catering?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "authentication",
+              "availability",
+              "exports"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-13",
+            "question": "Does the corpus name a chief financial officer?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "authentication",
+              "availability",
+              "exports"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-14",
+            "question": "What programming language powers the service?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "authentication",
+              "imports",
+              "incidents"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          }
+        ],
+        "conditions": {
+          "top_k": 3,
+          "unanswerable_threshold": 0.0,
+          "answering_method": "deterministic extractive sentence selection"
+        }
+      },
+      "semantic-all-MiniLM-L6-v2": {
+        "retriever": "semantic-all-MiniLM-L6-v2",
+        "split": "test",
+        "question_count": 14,
+        "answerable_question_count": 10,
+        "metrics": {
+          "recall_at_3": 1.0,
+          "mrr_at_3": 0.95,
+          "citation_correct_rate": 1.0,
+          "grounded_answer_rate": 0.9,
+          "unanswerable_correct_rate": 1.0
+        },
+        "examples": [
+          {
+            "question_id": "test-01",
+            "question": "What is the session idle timeout for an operator?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "authentication",
+              "exports",
+              "availability"
+            ],
+            "answer": "An operator session expires after eight hours of inactivity. Administrators can revoke an active session from the access console.",
+            "citations": [
+              {
+                "document_id": "authentication",
+                "title": "Authentication and sessions",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An operator session expires after eight hours of inactivity. Administrators can revoke an active session from the access console.",
+                "source_url": "https://example.invalid/meridian-service-docs/authentication"
+              }
+            ],
+            "expected_document_ids": [
+              "authentication"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-02",
+            "question": "Which role can create redacted exports?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "exports",
+              "roles",
+              "imports"
+            ],
+            "answer": "The Operator role can update assigned cases and create redacted exports. The Administrator role manages users, roles, retention settings, and routing rules.",
+            "citations": [
+              {
+                "document_id": "roles",
+                "title": "Roles and access review",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The Operator role can update assigned cases and create redacted exports. The Administrator role manages users, roles, retention settings, and routing rules.",
+                "source_url": "https://example.invalid/meridian-service-docs/roles"
+              }
+            ],
+            "expected_document_ids": [
+              "roles",
+              "exports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-03",
+            "question": "What are the required import columns?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "imports",
+              "exports",
+              "roles"
+            ],
+            "answer": "Use a CSV file encoded as UTF-8 with a header row. The required columns are case_id, customer_region, opened_at, and summary.",
+            "citations": [
+              {
+                "document_id": "imports",
+                "title": "Importing service records",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Use a CSV file encoded as UTF-8 with a header row. The required columns are case_id, customer_region, opened_at, and summary.",
+                "source_url": "https://example.invalid/meridian-service-docs/imports"
+              }
+            ],
+            "expected_document_ids": [
+              "imports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-04",
+            "question": "Do routing edits move existing cases automatically?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "routing",
+              "retention",
+              "roles"
+            ],
+            "answer": "Routing changes take effect for newly created cases only. Existing cases keep their current owner until reassigned.",
+            "citations": [
+              {
+                "document_id": "routing",
+                "title": "Case routing rules",
+                "line_start": 7,
+                "line_end": 7,
+                "quote": "Routing changes take effect for newly created cases only. Existing cases keep their current owner until reassigned.",
+                "source_url": "https://example.invalid/meridian-service-docs/routing"
+              }
+            ],
+            "expected_document_ids": [
+              "routing"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-05",
+            "question": "How frequently must customers receive an outage update?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "availability",
+              "incidents",
+              "notifications"
+            ],
+            "answer": "Create an incident when a service outage affects more than one customer or when sensitive data may have been exposed. The incident commander records the start time, impact, owner, and next update time.",
+            "citations": [
+              {
+                "document_id": "incidents",
+                "title": "Incident response",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Create an incident when a service outage affects more than one customer or when sensitive data may have been exposed. The incident commander records the start time, impact, owner, and next update time.",
+                "source_url": "https://example.invalid/meridian-service-docs/incidents"
+              }
+            ],
+            "expected_document_ids": [
+              "incidents"
+            ],
+            "retrieval_rank": 2
+          },
+          {
+            "question_id": "test-06",
+            "question": "What does a legal hold prevent?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "retention",
+              "roles",
+              "routing"
+            ],
+            "answer": "An Administrator can place a legal hold on a case. A legal hold prevents scheduled deletion until the hold is removed.",
+            "citations": [
+              {
+                "document_id": "retention",
+                "title": "Retention and deletion",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An Administrator can place a legal hold on a case. A legal hold prevents scheduled deletion until the hold is removed.",
+                "source_url": "https://example.invalid/meridian-service-docs/retention"
+              }
+            ],
+            "expected_document_ids": [
+              "retention"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-07",
+            "question": "When does an export link expire?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "exports",
+              "authentication",
+              "retention"
+            ],
+            "answer": "An export link expires after twenty-four hours. Downloading an export creates an audit event with the report identifier and operator identifier.",
+            "citations": [
+              {
+                "document_id": "exports",
+                "title": "Reports and exports",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "An export link expires after twenty-four hours. Downloading an export creates an audit event with the report identifier and operator identifier.",
+                "source_url": "https://example.invalid/meridian-service-docs/exports"
+              }
+            ],
+            "expected_document_ids": [
+              "exports"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-08",
+            "question": "How many downstream retries does ingestion use?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "availability",
+              "routing",
+              "exports"
+            ],
+            "answer": "The ingestion worker retries a transient downstream failure up to three times using exponential backoff. A failed final attempt creates a case for General Review.",
+            "citations": [
+              {
+                "document_id": "availability",
+                "title": "Availability targets",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The ingestion worker retries a transient downstream failure up to three times using exponential backoff. A failed final attempt creates a case for General Review.",
+                "source_url": "https://example.invalid/meridian-service-docs/availability"
+              }
+            ],
+            "expected_document_ids": [
+              "availability"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-09",
+            "question": "How many resolved cases are sampled per Operator each month?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "quality",
+              "availability",
+              "routing"
+            ],
+            "answer": "Supervisors sample ten resolved cases per Operator each month. A review checks that the category, customer region, and resolution notes agree with the case evidence.",
+            "citations": [
+              {
+                "document_id": "quality",
+                "title": "Quality review",
+                "line_start": 3,
+                "line_end": 3,
+                "quote": "Supervisors sample ten resolved cases per Operator each month. A review checks that the category, customer region, and resolution notes agree with the case evidence.",
+                "source_url": "https://example.invalid/meridian-service-docs/quality"
+              }
+            ],
+            "expected_document_ids": [
+              "quality"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-10",
+            "question": "For how long does the notification service deduplicate an event identifier?",
+            "answerable_expected": true,
+            "answerable_predicted": true,
+            "ranked_document_ids": [
+              "notifications",
+              "retention",
+              "incidents"
+            ],
+            "answer": "The notification service deduplicates notifications by event identifier for thirty days. A delivery failure is retried twice before it is recorded for follow-up.",
+            "citations": [
+              {
+                "document_id": "notifications",
+                "title": "Notifications",
+                "line_start": 5,
+                "line_end": 5,
+                "quote": "The notification service deduplicates notifications by event identifier for thirty days. A delivery failure is retried twice before it is recorded for follow-up.",
+                "source_url": "https://example.invalid/meridian-service-docs/notifications"
+              }
+            ],
+            "expected_document_ids": [
+              "notifications"
+            ],
+            "retrieval_rank": 1
+          },
+          {
+            "question_id": "test-11",
+            "question": "What exchange rate does Meridian use for invoices?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "authentication",
+              "imports",
+              "routing"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-12",
+            "question": "Which office provides weekend catering?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "availability",
+              "roles",
+              "routing"
+            ],
+            "answer": "I could not find supporting evidence for that question in this corpus.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-13",
+            "question": "Does the corpus name a chief financial officer?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "roles",
+              "routing",
+              "quality"
+            ],
+            "answer": "I could not find supporting evidence for that question in this corpus.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          },
+          {
+            "question_id": "test-14",
+            "question": "What programming language powers the service?",
+            "answerable_expected": false,
+            "answerable_predicted": false,
+            "ranked_document_ids": [
+              "authentication",
+              "notifications",
+              "imports"
+            ],
+            "answer": "I could not find a corpus sentence that supports that question.",
+            "citations": [],
+            "expected_document_ids": [],
+            "retrieval_rank": null
+          }
+        ],
+        "conditions": {
+          "top_k": 3,
+          "unanswerable_threshold": 0.2141905,
+          "answering_method": "deterministic extractive sentence selection"
+        }
+      }
+    },
+    "calibration": {
+      "lexical-tfidf": {
+        "threshold": 0.0,
+        "tuning_question_count": 8,
+        "tuning_accuracy": 0.875,
+        "observations": [
+          {
+            "question_id": "tune-01",
+            "answerable": true,
+            "top_score": 0.22839768929336773
+          },
+          {
+            "question_id": "tune-02",
+            "answerable": true,
+            "top_score": 0.24584603402810698
+          },
+          {
+            "question_id": "tune-03",
+            "answerable": true,
+            "top_score": 0.2665464825487462
+          },
+          {
+            "question_id": "tune-04",
+            "answerable": true,
+            "top_score": 0.3209897930682489
+          },
+          {
+            "question_id": "tune-05",
+            "answerable": true,
+            "top_score": 0.084807252248694
+          },
+          {
+            "question_id": "tune-06",
+            "answerable": true,
+            "top_score": 0.22714465976238066
+          },
+          {
+            "question_id": "tune-07",
+            "answerable": true,
+            "top_score": 0.24924880387251808
+          },
+          {
+            "question_id": "tune-08",
+            "answerable": false,
+            "top_score": 0.08986731791482429
+          }
+        ]
+      },
+      "semantic-all-MiniLM-L6-v2": {
+        "threshold": 0.2141905,
+        "tuning_question_count": 8,
+        "tuning_accuracy": 1.0,
+        "observations": [
+          {
+            "question_id": "tune-01",
+            "answerable": true,
+            "top_score": 0.5564773082733154
+          },
+          {
+            "question_id": "tune-02",
+            "answerable": true,
+            "top_score": 0.5208377838134766
+          },
+          {
+            "question_id": "tune-03",
+            "answerable": true,
+            "top_score": 0.5114699602127075
+          },
+          {
+            "question_id": "tune-04",
+            "answerable": true,
+            "top_score": 0.7367870807647705
+          },
+          {
+            "question_id": "tune-05",
+            "answerable": true,
+            "top_score": 0.23871591687202454
+          },
+          {
+            "question_id": "tune-06",
+            "answerable": true,
+            "top_score": 0.7199780941009521
+          },
+          {
+            "question_id": "tune-07",
+            "answerable": true,
+            "top_score": 0.5602681636810303
+          },
+          {
+            "question_id": "tune-08",
+            "answerable": false,
+            "top_score": 0.18966490030288696
+          }
+        ]
+      }
+    },
+    "regression": {
+      "passed": true,
+      "failures": [],
+      "baseline": "/Users/roshansilva/Documents/GitHub/career-portfolio/retrieval-eval-workbench/evidence/baseline.json"
+    }
+  },
+  "limitations": [
+    "The corpus and questions are original synthetic service documentation; these metrics do not establish performance on private or production corpora.",
+    "The deterministic extractive answerer is evaluated for citation support, not answer fluency or broad factual correctness.",
+    "A small held-out set is a regression signal, not statistically conclusive evidence."
+  ]
+}
