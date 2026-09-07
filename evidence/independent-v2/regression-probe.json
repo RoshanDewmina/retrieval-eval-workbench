@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-09-07T04:19:41.768720+00:00",
+  "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+  "command": "regression_check preserved first-run metrics, then simulated semantic critical_fact_rate drop to0",
+  "exit_status": 0,
+  "measurement_kind": "deterministic_regression_gate_negative_probe_no_reinference",
+  "baseline_sha256": "2a54a7589bc6e624a7b3afd4d0a59d783c7294ee4200ddb3e9ca3829af0fa0e5",
+  "unchanged_measured_metrics": {
+    "passed": true,
+    "failures": [],
+    "baseline": "../docs/reviews/retrieval-fresh-holdout/reference-baseline.json"
+  },
+  "simulated_metric_drop": {
+    "passed": false,
+    "failures": [
+      {
+        "retriever": "semantic-all-MiniLM-L6-v2",
+        "metric": "critical_fact_rate",
+        "minimum": 0.7857142857142857,
+        "actual": 0
+      }
+    ],
+    "baseline": "../docs/reviews/retrieval-fresh-holdout/reference-baseline.json"
+  },
+  "simulated_release_exit_status": 2,
+  "limitations": [
+    "Mutation of recorded metrics tests regression gate only; it is not a measured degraded model run."
+  ]
+}

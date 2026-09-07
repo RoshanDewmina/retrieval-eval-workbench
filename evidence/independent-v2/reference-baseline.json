@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "status": "frozen_first_run_regression_reference_not_initial_quality_target",
+  "frozen_at_utc": "2026-09-07T04:19:41.767495+00:00",
+  "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+  "source_receipt_sha256": "d3e25807067a0688863ed24bb6aab206c6d629a4b25110e23e567a7ac767bd93",
+  "minimum_metrics": {
+    "lexical-tfidf": {
+      "recall_at_3": 1.0,
+      "mrr_at_3": 1.0,
+      "citation_integrity_rate": 1.0,
+      "labeled_support_rate": 0.8571428571428571,
+      "critical_fact_rate": 0.7857142857142857,
+      "unanswerable_correct_rate": 0.16666666666666666
+    },
+    "semantic-all-MiniLM-L6-v2": {
+      "recall_at_3": 1.0,
+      "mrr_at_3": 0.9642857142857143,
+      "citation_integrity_rate": 1.0,
+      "labeled_support_rate": 0.9285714285714286,
+      "critical_fact_rate": 0.7857142857142857,
+      "unanswerable_correct_rate": 0.3333333333333333
+    }
+  },
+  "limitations": [
+    "Frozen from first measured outcomes for future drop detection only. Does not turn weak refusal or multi-document performance into a quality success.",
+    "The case set is now exposed for regression checks. Do not tune on it and call subsequent scores fresh held-out evidence.",
+    "No repeated model inference was used to construct or test this reference."
+  ]
+}

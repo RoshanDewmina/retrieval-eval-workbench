@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 WORKDIR /app
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HOST=0.0.0.0 PORT=8113 UV_TORCH_BACKEND=cpu
-COPY --from=ghcr.io/astral-sh/uv:0.6.5 /uv /uvx /bin/
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HOST=0.0.0.0 PORT=8113
+COPY --from=ghcr.io/astral-sh/uv:0.11.8 /uv /uvx /bin/
 COPY pyproject.toml uv.lock README.md LICENSE ./
 COPY src ./src
 RUN uv sync --frozen --no-dev

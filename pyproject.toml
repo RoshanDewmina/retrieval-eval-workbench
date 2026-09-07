@@ -11,6 +11,7 @@ dependencies = [
   "uvicorn[standard]>=0.34,<1",
   "sentence-transformers>=3.4,<4",
   "scikit-learn>=1.6,<2",
+  "torch==2.14.0",
 ]
 
 [dependency-groups]
@@ -36,4 +37,4 @@ url = "https://download.pytorch.org/whl/cpu"
 explicit = true
 
 [tool.uv.sources]
-torch = { index = "pytorch-cpu" }
+torch = { index = "pytorch-cpu", marker = "sys_platform == 'linux'" }

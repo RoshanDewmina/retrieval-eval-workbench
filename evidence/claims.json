@@ -3,24 +3,67 @@
   "claims": [
     {
       "id": "retrieval-workbench-local-comparison-v1",
-      "capability_tags": ["retrieval", "evaluation", "grounding", "fastapi", "reproducibility"],
-      "implementation_refs": ["src/retrieval_eval_workbench/retrieval.py", "src/retrieval_eval_workbench/evaluation.py", "src/retrieval_eval_workbench/app.py"],
-      "source_revision": "030c3b836979ebbb008b5793a744d27b96e8bc72",
-      "receipt_refs": ["evidence/benchmarks/latest.json"],
-      "conditions": ["Ten versioned original synthetic documents", "CPU local execution", "14 fixed exposed development questions", "semantic model sentence-transformers/all-MiniLM-L6-v2"],
-      "limitations": ["Synthetic corpus and exposed development history", "Historical receipt model revision is unknown", "Deterministic extractive answerer", "No production-scale or real-user claim"],
+      "capability_tags": [
+        "retrieval",
+        "evaluation",
+        "grounding",
+        "fastapi",
+        "reproducibility"
+      ],
+      "implementation_refs": [
+        "src/retrieval_eval_workbench/retrieval.py",
+        "src/retrieval_eval_workbench/evaluation.py",
+        "src/retrieval_eval_workbench/app.py"
+      ],
+      "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+      "receipt_refs": [
+        "evidence/independent-v2/first-run.json",
+        "evidence/independent-v2/regression-probe.json"
+      ],
+      "conditions": [
+        "10original MIT synthetic documents",
+        "20independently authored cases frozen after implementation and before first pass",
+        "LocalCPU pinnedMiniLM; no paid calls"
+      ],
+      "limitations": [
+        "Only11/14 required-fact answers for both methods",
+        "Unsupported refusal1/6lexical and2/6semantic",
+        "0/2complete multidocument answers",
+        "Sample not statistically representative; personal mastery pending"
+      ],
       "draft_resume_wording": "Built a local retrieval evaluation workbench that compares TF-IDF with dense MiniLM retrieval and returns line-level extractive citations on a versioned synthetic corpus.",
       "wording_status": "user_review_pending",
       "mastery_status": "pending"
     },
     {
       "id": "retrieval-workbench-heldout-regression-v1",
-      "capability_tags": ["testing", "regression-detection", "dataset-provenance"],
-      "implementation_refs": ["data/manifest.json", "data/questions.json", "src/retrieval_eval_workbench/evaluation.py", "tests/test_evaluation.py"],
-      "source_revision": "030c3b836979ebbb008b5793a744d27b96e8bc72",
-      "receipt_refs": ["evidence/benchmarks/latest.json"],
-      "conditions": ["Historical calibration uses only the eight tuning IDs", "Historical regression floors are versioned in evidence/baseline.json"],
-      "limitations": ["Historical question set is exposed, not independent held-out", "The unanswerable threshold is sensitive to corpus and query distribution", "A passing floor is a regression signal, not a quality guarantee"],
+      "capability_tags": [
+        "testing",
+        "regression-detection",
+        "dataset-provenance"
+      ],
+      "implementation_refs": [
+        "data/manifest.json",
+        "data/questions.json",
+        "src/retrieval_eval_workbench/evaluation.py",
+        "tests/test_evaluation.py"
+      ],
+      "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+      "receipt_refs": [
+        "evidence/independent-v2/first-run.json",
+        "evidence/independent-v2/regression-probe.json"
+      ],
+      "conditions": [
+        "10original MIT synthetic documents",
+        "20independently authored cases frozen after implementation and before first pass",
+        "LocalCPU pinnedMiniLM; no paid calls"
+      ],
+      "limitations": [
+        "Only11/14 required-fact answers for both methods",
+        "Unsupported refusal1/6lexical and2/6semantic",
+        "0/2complete multidocument answers",
+        "Sample not statistically representative; personal mastery pending"
+      ],
       "draft_resume_wording": "Added hashed corpus manifests, held-out retrieval evaluation, and a metric regression gate with inspectable failure cases.",
       "wording_status": "user_review_pending",
       "mastery_status": "pending"

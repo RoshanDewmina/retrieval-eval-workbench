@@ -1,0 +1,245 @@
+{
+  "schema_version": 2,
+  "status": "independently_authored_before_first_run",
+  "labels": {
+    "fresh-01": {
+      "supporting_citations": [
+        {
+          "document_id": "authentication",
+          "line_start": 3,
+          "line_end": 3,
+          "quote": "Meridian Support Service uses passwordless email links for operator sign-in. A sign-in link expires after fifteen minutes and can be used only once.",
+          "source_url": "https://example.invalid/meridian-service-docs/authentication"
+        }
+      ],
+      "required_answer_phrases": [
+        "used only once"
+      ]
+    },
+    "fresh-02": {
+      "supporting_citations": [
+        {
+          "document_id": "authentication",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Service tokens are for server-to-server integrations only. Store them in a secret manager and rotate a token immediately if it appears in a client log.",
+          "source_url": "https://example.invalid/meridian-service-docs/authentication"
+        }
+      ],
+      "required_answer_phrases": [
+        "rotate a token immediately"
+      ]
+    },
+    "fresh-03": {
+      "supporting_citations": [
+        {
+          "document_id": "availability",
+          "line_start": 3,
+          "line_end": 3,
+          "quote": "The case search page has a monthly availability objective of 99.5 percent. Scheduled maintenance is announced at least forty-eight hours in advance and is excluded from that objective.",
+          "source_url": "https://example.invalid/meridian-service-docs/availability"
+        }
+      ],
+      "required_answer_phrases": [
+        "excluded from that objective"
+      ]
+    },
+    "fresh-04": {
+      "supporting_citations": [
+        {
+          "document_id": "imports",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Submitting the same import key within twenty-four hours returns the original import result. Corrected data must use a new import key.",
+          "source_url": "https://example.invalid/meridian-service-docs/imports"
+        }
+      ],
+      "required_answer_phrases": [
+        "returns the original import result"
+      ]
+    },
+    "fresh-05": {
+      "supporting_citations": [
+        {
+          "document_id": "imports",
+          "line_start": 5,
+          "line_end": 5,
+          "quote": "The import preview rejects rows with a missing case_id or an opened_at value that is not ISO 8601. Rejected rows remain available for download for seven days.",
+          "source_url": "https://example.invalid/meridian-service-docs/imports"
+        }
+      ],
+      "required_answer_phrases": [
+        "seven days"
+      ]
+    },
+    "fresh-06": {
+      "supporting_citations": [
+        {
+          "document_id": "roles",
+          "line_start": 3,
+          "line_end": 3,
+          "quote": "The Viewer role can search cases and download approved reports. Viewers cannot change case ownership, export raw attachments, or edit routing rules.",
+          "source_url": "https://example.invalid/meridian-service-docs/roles"
+        }
+      ],
+      "required_answer_phrases": [
+        "viewers cannot",
+        "case ownership",
+        "edit routing rules"
+      ]
+    },
+    "fresh-07": {
+      "supporting_citations": [
+        {
+          "document_id": "routing",
+          "line_start": 3,
+          "line_end": 3,
+          "quote": "New cases are routed by customer_region and issue category. A case marked billing is assigned to the Finance queue; a case marked security is assigned to the Security Response queue.",
+          "source_url": "https://example.invalid/meridian-service-docs/routing"
+        }
+      ],
+      "required_answer_phrases": [
+        "security response queue"
+      ]
+    },
+    "fresh-08": {
+      "supporting_citations": [
+        {
+          "document_id": "routing",
+          "line_start": 5,
+          "line_end": 5,
+          "quote": "If no routing rule matches, the case enters the General Review queue. Operators must assign General Review cases within one business day.",
+          "source_url": "https://example.invalid/meridian-service-docs/routing"
+        }
+      ],
+      "required_answer_phrases": [
+        "within one business day"
+      ]
+    },
+    "fresh-09": {
+      "supporting_citations": [
+        {
+          "document_id": "incidents",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Publish a customer-facing update every sixty minutes while a confirmed outage remains active. Close an incident only after the service is stable and follow-up work has an owner.",
+          "source_url": "https://example.invalid/meridian-service-docs/incidents"
+        }
+      ],
+      "required_answer_phrases": [
+        "service is stable",
+        "follow-up work has an owner"
+      ]
+    },
+    "fresh-10": {
+      "supporting_citations": [
+        {
+          "document_id": "quality",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Quality review scores are internal operational signals. They are not a customer satisfaction measurement.",
+          "source_url": "https://example.invalid/meridian-service-docs/quality"
+        }
+      ],
+      "required_answer_phrases": [
+        "not a customer satisfaction measurement"
+      ]
+    },
+    "fresh-11": {
+      "supporting_citations": [
+        {
+          "document_id": "notifications",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Notifications do not contain attachment text or access tokens. Operators open the case in Meridian to view details.",
+          "source_url": "https://example.invalid/meridian-service-docs/notifications"
+        }
+      ],
+      "required_answer_phrases": [
+        "do not contain attachment text or access tokens"
+      ]
+    },
+    "fresh-12": {
+      "supporting_citations": [
+        {
+          "document_id": "retention",
+          "line_start": 7,
+          "line_end": 7,
+          "quote": "Deletion requests are processed nightly. The audit event records the request identifier, object type, and completion time, but never stores the deleted summary text.",
+          "source_url": "https://example.invalid/meridian-service-docs/retention"
+        }
+      ],
+      "required_answer_phrases": [
+        "never stores the deleted summary text"
+      ]
+    },
+    "fresh-13": {
+      "supporting_citations": [
+        {
+          "document_id": "retention",
+          "line_start": 3,
+          "line_end": 3,
+          "quote": "Case summaries and routing history are retained for 365 days after a case closes. Approved reports are retained for 90 days after generation.",
+          "source_url": "https://example.invalid/meridian-service-docs/retention"
+        },
+        {
+          "document_id": "exports",
+          "line_start": 5,
+          "line_end": 5,
+          "quote": "An export link expires after twenty-four hours. Downloading an export creates an audit event with the report identifier and operator identifier.",
+          "source_url": "https://example.invalid/meridian-service-docs/exports"
+        }
+      ],
+      "required_answer_phrases": [
+        "90 days",
+        "twenty-four hours"
+      ]
+    },
+    "fresh-14": {
+      "supporting_citations": [
+        {
+          "document_id": "availability",
+          "line_start": 5,
+          "line_end": 5,
+          "quote": "The ingestion worker retries a transient downstream failure up to three times using exponential backoff. A failed final attempt creates a case for General Review.",
+          "source_url": "https://example.invalid/meridian-service-docs/availability"
+        },
+        {
+          "document_id": "notifications",
+          "line_start": 5,
+          "line_end": 5,
+          "quote": "The notification service deduplicates notifications by event identifier for thirty days. A delivery failure is retried twice before it is recorded for follow-up.",
+          "source_url": "https://example.invalid/meridian-service-docs/notifications"
+        }
+      ],
+      "required_answer_phrases": [
+        "up to three times",
+        "retried twice"
+      ]
+    },
+    "fresh-15": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    },
+    "fresh-16": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    },
+    "fresh-17": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    },
+    "fresh-18": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    },
+    "fresh-19": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    },
+    "fresh-20": {
+      "supporting_citations": [],
+      "required_answer_phrases": []
+    }
+  }
+}

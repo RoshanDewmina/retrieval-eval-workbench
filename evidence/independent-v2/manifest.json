@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "dataset_id": "meridian-independent-evaluation-v2",
+  "version": "2.0.0",
+  "license": "MIT",
+  "source_urls": [],
+  "authored_at_utc": "2026-09-07T04:13:45.491267+00:00",
+  "frozen_implementation_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+  "provenance": "Fresh questions authored by the independent reviewer after correction freeze, from the frozen original MIT synthetic corpus. No queries or evaluation were executed on these cases before this manifest.",
+  "split_method": "All20 new fixed IDs are first-run evaluation only; no tuning or training on them. Historical original/evolved questions remain exposed development data.",
+  "train_identities": [],
+  "tuning_identities": [],
+  "test_identities": [
+    "fresh-01",
+    "fresh-02",
+    "fresh-03",
+    "fresh-04",
+    "fresh-05",
+    "fresh-06",
+    "fresh-07",
+    "fresh-08",
+    "fresh-09",
+    "fresh-10",
+    "fresh-11",
+    "fresh-12",
+    "fresh-13",
+    "fresh-14",
+    "fresh-15",
+    "fresh-16",
+    "fresh-17",
+    "fresh-18",
+    "fresh-19",
+    "fresh-20"
+  ],
+  "categories": {
+    "fresh-01": "single_document",
+    "fresh-02": "single_document",
+    "fresh-03": "single_document",
+    "fresh-04": "single_document",
+    "fresh-05": "single_document",
+    "fresh-06": "single_document",
+    "fresh-07": "single_document",
+    "fresh-08": "single_document",
+    "fresh-09": "single_document",
+    "fresh-10": "single_document",
+    "fresh-11": "single_document",
+    "fresh-12": "single_document",
+    "fresh-13": "multi_document",
+    "fresh-14": "multi_document",
+    "fresh-15": "unanswerable_out_of_domain",
+    "fresh-16": "unanswerable_near_domain",
+    "fresh-17": "adversarial_unsupported",
+    "fresh-18": "adversarial_unsupported",
+    "fresh-19": "unanswerable_near_domain",
+    "fresh-20": "unanswerable_near_domain"
+  },
+  "seed": null,
+  "sample_design": {
+    "single_document_answerable": 12,
+    "multi_document_answerable": 2,
+    "unanswerable": 6,
+    "adversarial_unsupported_subset": 2
+  },
+  "metric_semantics": [
+    "Frozen evaluator labeled_support accepts one matching source passage; for multi-document questions this is partial source support, not completeness. Critical_fact requires all labeled phrases and is the completeness check.",
+    "The repository field recall_at_3 measures any relevant-document hit, not fraction recall for multi-document cases. The runner will additionally report multi-document all-required-documents-at3 coverage.",
+    "Unsupported adversarial requests ask for information absent from the corpus; refusal means answerable=false and no citations.",
+    "No required accuracy floor is selected from evaluation results. The first-run evidence can subsequently become an exposed fixed regression reference, never an unseen test for further tuning."
+  ],
+  "limitations": [
+    "20 purposively selected authored cases, not a representative random sample or statistical generalization.",
+    "Reviewer has inspected frozen implementation, historical results and corpus; independence is from implementation authorship and fresh outcome observations, not a blinded evaluation.",
+    "Single-line answerer is expected to have a multi-document limitation; cases are retained to measure it."
+  ],
+  "input_fingerprints": {
+    "data/manifest.json": "f3d65cfd5618623b92a1cb1cef09e4e5fe5e18605b7d4e1feb23370f59a41234",
+    "data/calibration-v1.json": "c69ba6aa3c270c55d1c725fe3ca4f25c9207cc77b39e0d3ec70ca1979613b550",
+    "data/model-manifest-v1.json": "d2c1a718a207b47d6fe3bf2077e7679a0ad4c2ce7405f579b3c8901da4e329d4",
+    "uv.lock": "0677be6accf3c26afb39afa227c83850f064617367354fe77881908bba23f582"
+  },
+  "files": {
+    "questions.json": "af7404765d45a3fa2e51cb3ec7dc7ab6df95f02ee98df8f4b37796c531d4e618",
+    "labels.json": "874ddb8eff8607aacfb144ef2bb7d94e446ec4c0dc85b465b101bd559cf2d767"
+  }
+}

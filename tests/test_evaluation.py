@@ -64,3 +64,36 @@ def test_cli_failure_writes_failed_receipt_without_model_load(monkeypatch, tmp_p
     receipt = tmp_path / "receipt.json"
     assert benchmark(receipt, baseline) == 2
     assert json.loads(receipt.read_text())["exit_status"] == 2
+
+
+def test_fresh_reference_rejects_drop_and_api_exposes_actual_cases():
+    import copy
+    from fastapi.testclient import TestClient
+    from retrieval_eval_workbench.app import app
+    from retrieval_eval_workbench.data import ROOT
+    receipt = TestClient(app).get('/api/results').json()
+    assert receipt['source_revision']=='661852a370ab35d6747a8bedab2a6b16864e9ccb'
+    assert len(receipt['results']['semantic']['examples'])==20
+    result={'results':{v['retriever']:v for v in receipt['results'].values()}}
+    baseline=ROOT/'evidence/independent-v2/reference-baseline.json'
+    assert regression_check(result,baseline)['passed']
+    broken=copy.deepcopy(result)
+    broken['results']['semantic-all-MiniLM-L6-v2']['metrics']['critical_fact_rate']=0
+    assert not regression_check(broken,baseline)['passed']
+
+
+def test_independent_regression_cli_preserves_failure_and_uses_frozen_labels(monkeypatch,tmp_path):
+    import retrieval_eval_workbench.cli as cli
+    class Stub:
+        def __init__(self,name):self.name=name
+    monkeypatch.setattr(cli,'LexicalRetriever',lambda _:Stub('lexical-tfidf'))
+    monkeypatch.setattr(cli,'SemanticRetriever',lambda _:Stub('semantic-all-MiniLM-L6-v2'))
+    def failed(retriever,questions,*args,**kwargs):
+        assert len(questions)==20 and questions[0].supporting_citations
+        return {'metrics':{'critical_fact_rate':0}}
+    monkeypatch.setattr(cli,'evaluate',failed)
+    dest=tmp_path/'failed.json'
+    assert cli.benchmark_independent(dest)==2
+    result=json.loads(dest.read_text())
+    assert result['exit_status']==2
+    assert result['measured_results']['evaluation_status']=='exposed_independent_set_regression_rerun'
