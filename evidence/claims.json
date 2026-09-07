@@ -31,7 +31,7 @@
         "0/2complete multidocument answers",
         "Sample not statistically representative; personal mastery pending"
       ],
-      "draft_resume_wording": "Built a local retrieval evaluation workbench that compares TF-IDF with dense MiniLM retrieval and returns line-level extractive citations on a versioned synthetic corpus.",
+      "draft_resume_wording": "Built a local retrieval evaluation tool comparing TF-IDF and MiniLM, with source-line citations on a versioned synthetic document set.",
       "wording_status": "user_review_pending",
       "mastery_status": "pending"
     },
@@ -64,7 +64,7 @@
         "0/2complete multidocument answers",
         "Sample not statistically representative; personal mastery pending"
       ],
-      "draft_resume_wording": "Added hashed corpus manifests, held-out retrieval evaluation, and a metric regression gate with inspectable failure cases.",
+      "draft_resume_wording": "Added held-out retrieval tests and a regression check that records failed metrics and cases for inspection.",
       "wording_status": "user_review_pending",
       "mastery_status": "pending"
     }
