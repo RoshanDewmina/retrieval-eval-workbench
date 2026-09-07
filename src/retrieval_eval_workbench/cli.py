@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from .data import ROOT, load_documents, load_questions
-from .evaluation import evaluate, regression_check, write_receipt
+from .evaluation import evaluate, regression_check, select_unanswerable_threshold, write_receipt
 from .retrieval import LexicalRetriever, SemanticRetriever
 
 
@@ -14,8 +14,11 @@ def benchmark() -> int:
     questions = load_questions()
     retrievers = [LexicalRetriever(documents), SemanticRetriever(documents)]
     results = {"dataset": "meridian-service-docs@1.0.0", "results": {}}
+    results["calibration"] = {}
     for retriever in retrievers:
-        results["results"][retriever.name] = evaluate(retriever, questions, split="test")
+        calibration = select_unanswerable_threshold(retriever, questions)
+        results["calibration"][retriever.name] = calibration
+        results["results"][retriever.name] = evaluate(retriever, questions, split="test", threshold=calibration["threshold"])
     results["regression"] = regression_check(results, ROOT / "evidence" / "baseline.json")
     write_receipt(results, ROOT / "evidence" / "benchmarks" / "latest.json", "make benchmark")
     print(json.dumps(results, indent=2))
@@ -27,3 +30,7 @@ def main() -> None:
     parser.add_argument("command", choices=["benchmark"])
     args = parser.parse_args()
     raise SystemExit(benchmark() if args.command == "benchmark" else 2)
+
+
+if __name__ == "__main__":
+    main()

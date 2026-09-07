@@ -20,6 +20,24 @@ def _git(command: list[str]) -> str:
         return "unknown"
 
 
+def select_unanswerable_threshold(retriever: Retriever, questions: list[Question]) -> dict:
+    """Choose a score floor from tuning IDs only; held-out IDs are never inspected here."""
+    tuning = [question for question in questions if question.split == "tuning"]
+    observations = [(question, retriever.search(question.question, limit=1)[0].score) for question in tuning]
+    scores = sorted({round(score, 6) for _, score in observations})
+    candidates = [0.0, *[(left + right) / 2 for left, right in zip(scores, scores[1:])], min(1.0, scores[-1] + 0.01)]
+    def score(threshold: float) -> float:
+        correct = [float((value >= threshold) == question.answerable) for question, value in observations]
+        return mean(correct)
+    selected = max(candidates, key=lambda threshold: (score(threshold), -threshold))
+    return {
+        "threshold": selected,
+        "tuning_question_count": len(tuning),
+        "tuning_accuracy": score(selected),
+        "observations": [{"question_id": question.id, "answerable": question.answerable, "top_score": value} for question, value in observations],
+    }
+
+
 def evaluate(retriever: Retriever, questions: list[Question], split: str, limit: int = 3, threshold: float = 0.16) -> dict:
     selected = [question for question in questions if question.split == split]
     answerable = [question for question in selected if question.answerable]

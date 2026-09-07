@@ -1,7 +1,7 @@
 {
-  "description": "Initial regression floor. It is replaced with measured, versioned floors after the first successful benchmark.",
+  "description": "Regression floors derived from the first held-out benchmark on local CPU. Floors allow modest implementation/runtime variation but fail material drops; see the versioned benchmark receipt for the measured values.",
   "minimum_metrics": {
-    "lexical-tfidf": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_correct_rate": 0.0, "grounded_answer_rate": 0.0, "unanswerable_correct_rate": 0.0},
-    "semantic-all-MiniLM-L6-v2": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_correct_rate": 0.0, "grounded_answer_rate": 0.0, "unanswerable_correct_rate": 0.0}
+    "lexical-tfidf": {"recall_at_3": 0.95, "mrr_at_3": 0.95, "citation_correct_rate": 0.95, "grounded_answer_rate": 0.8, "unanswerable_correct_rate": 0.75},
+    "semantic-all-MiniLM-L6-v2": {"recall_at_3": 0.95, "mrr_at_3": 0.9, "citation_correct_rate": 0.95, "grounded_answer_rate": 0.8, "unanswerable_correct_rate": 0.75}
   }
 }

@@ -19,8 +19,13 @@ class Document:
     source_url: str
 
     @property
-    def lines(self) -> list[str]:
-        return [line.strip() for line in self.text.splitlines() if line.strip()]
+    def numbered_body_lines(self) -> list[tuple[int, str]]:
+        """Physical source line numbers, excluding Markdown headings and blank lines."""
+        return [
+            (line_number, line.strip())
+            for line_number, line in enumerate(self.text.splitlines(), start=1)
+            if line.strip() and not line.startswith("#")
+        ]
 
 
 @dataclass(frozen=True)
@@ -47,7 +52,11 @@ def load_documents(data_dir: Path = DATA_DIR) -> list[Document]:
 
 
 def load_questions(data_dir: Path = DATA_DIR) -> list[Question]:
-    payload = json.loads((data_dir / "questions.json").read_text())
+    manifest = json.loads((data_dir / "manifest.json").read_text())
+    path = data_dir / "questions.json"
+    if hashlib.sha256(path.read_bytes()).hexdigest() != manifest["questions_sha256"]:
+        raise ValueError("hash mismatch for questions.json")
+    payload = json.loads(path.read_text())
     return [
         Question(
             id=item["id"],

@@ -28,7 +28,7 @@ class _TinyEmbeddingModel:
         vectors = []
         for sentence in sentences:
             lower = sentence.lower()
-            vectors.append([float("routing" in lower or "queue" in lower), float("retention" in lower or "deletion" in lower)])
+            vectors.append([float("case routing rules" in lower or "which queue" in lower), float("retention" in lower or "deletion" in lower)])
         array = np.array(vectors, dtype=float)
         norms = np.linalg.norm(array, axis=1, keepdims=True)
         return array / np.where(norms == 0, 1, norms)

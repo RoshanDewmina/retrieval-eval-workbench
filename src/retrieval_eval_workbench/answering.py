@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from .retrieval import Retriever, SearchHit
 
 
-STOPWORDS = {"a", "an", "and", "are", "does", "for", "how", "in", "is", "of", "on", "the", "to", "what", "when", "where", "which", "with"}
+STOPWORDS = {"a", "an", "and", "are", "corpus", "does", "for", "how", "in", "is", "meridian", "of", "on", "service", "the", "to", "use", "what", "when", "where", "which", "with"}
 
 
 @dataclass(frozen=True)
@@ -41,15 +41,22 @@ def answer_query(retriever: Retriever, query: str, limit: int = 3, minimum_score
             answerable=False,
         )
     query_terms = tokens(query)
-    candidate: tuple[float, SearchHit, int, str] | None = None
+    candidate: tuple[float, int, SearchHit, int, str] | None = None
     for hit in hits:
-        for line_number, line in enumerate(hit.document.lines, start=1):
+        for line_number, line in hit.document.numbered_body_lines:
             overlap = len(query_terms & tokens(line))
             score = overlap + hit.score * 0.35
             if candidate is None or score > candidate[0]:
-                candidate = (score, hit, line_number, line)
+                candidate = (score, overlap, hit, line_number, line)
     assert candidate is not None
-    _, hit, line_number, sentence = candidate
+    _, overlap, hit, line_number, sentence = candidate
+    if overlap == 0:
+        return GroundedAnswer(
+            answer="I could not find a corpus sentence that supports that question.",
+            citations=[],
+            hits=hits,
+            answerable=False,
+        )
     citation = Citation(
         document_id=hit.document.id,
         title=hit.document.title,
