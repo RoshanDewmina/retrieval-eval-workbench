@@ -54,7 +54,7 @@ Example response:
   "strategy": "semantic",
   "answerable": true,
   "answer": "If no routing rule matches, the case enters the General Review queue.",
-  "citations": [{"document_id": "routing", "line_start": 3, "line_end": 3}],
+  "citations": [{"document_id": "routing", "line_start": 5, "line_end": 5}],
   "hits": [{"document_id": "routing", "score": 0.73}]
 }
 ```
@@ -74,7 +74,7 @@ Grounding is intentionally deterministic and extractive: it returns one corpus s
 - The corpus is small and original synthetic data. Results are a local regression signal, not a statistically conclusive or production claim.
 - Dense retrieval is CPU-only and caches the corpus embeddings only in process. It is suitable for a local demo, not a large-corpus vector index.
 - The unanswerable detector uses frozen development configuration. Out-of-domain queries can still retrieve superficially related material.
-- The answerer quotes a single supporting sentence. It does not compose multi-document answers or verify citations beyond the versioned local corpus.
+- The answerer quotes a single supporting sentence. It does not compose multi-document answers or establish semantic relevance beyond the versioned local corpus.
 - The Docker image runs locally and downloads no model during build. Run a semantic query or benchmark after starting it to populate the runtime cache.
 
 ## Repository contents
