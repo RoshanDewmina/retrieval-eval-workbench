@@ -1,0 +1,144 @@
+{
+  "verdict": "fix",
+  "scoped_correction_verdict": "approve",
+  "integration_owner": "root",
+  "escalation": "Initial review failures are resolved in the frozen implementation. Root owns remaining evidence/UI/regression-reference integration and Linux container verification; no third identical review loop or model tuning requested.",
+  "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+  "prior_review": "retrieval-review.json",
+  "resolved_findings": [
+    {
+      "prior": "Exposed held-out questions",
+      "status": "resolved",
+      "evidence": "Original22 question records preserved exactly with exposed status; evolved file/version/README identify development history; independently authored20-case evaluation frozen after code/settings freeze and run once."
+    },
+    {
+      "prior": "Live/benchmark threshold mismatch",
+      "status": "resolved",
+      "evidence": "Both serving and benchmark consume calibration-v1.json; API returns fingerprint and effective values. Original test-08 and an unsupported query match independent direct answering."
+    },
+    {
+      "prior": "Citation and critical-fact scoring",
+      "status": "resolved",
+      "evidence": "Physical ID/source/range/quote verification, exact answer-to-quote matching and labeled support required; eight-to-eighty and line999/source forgeries rejected in independent probes. Fresh failures remain explicit."
+    },
+    {
+      "prior": "Unpinned encoder provenance",
+      "status": "resolved",
+      "evidence": "Pinned1110a243fdf4706b3f48f1d95db1a4f5529b4d41 plus11 file hashes; cached snapshot verified and tampered snapshot rejected. First-run actual offline encoder path succeeded. Historical model provenance honestly unknown."
+    },
+    {
+      "prior": "False-success regression receipts/missing coverage",
+      "status": "resolved",
+      "evidence": "CLI uses actual status2 for failed gate; missing metrics/retrievers/nonfinite values rejected in14-test suite. Independent first-run reference accepts preserved metrics and rejects simulated critical-fact drop with named metric."
+    },
+    {
+      "prior": "Docker missing README",
+      "status": "resolved",
+      "evidence": "Clean temporary copy of exact pre-sync pyproject,lock,README,LICENSE,src now builds a wheel successfully. HOST/PORT honored by startup. This does not establish full Docker execution."
+    },
+    {
+      "prior": "Concurrent cold model loads",
+      "status": "resolved",
+      "evidence": "Independent8-thread delayed-constructor probe observed1 model constructor and1 shared object."
+    },
+    {
+      "prior": "UI viewport/label/unsafe text rendering",
+      "status": "resolved_at_source",
+      "evidence": "Viewport/mobile CSS,textarea label,safe textContent rendering,pending and network error handling present. Browser rendering remains root integration verification."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "major",
+      "confidence": "certain",
+      "file": "retrieval-eval-workbench/src/retrieval_eval_workbench/app.py:100",
+      "issue": "The results endpoint and results UI still expose only historical development receipt/retriever names. The independent first-run results, per-example failures and measured comparison currently exist only in parent review artifacts, so the delivered workbench does not yet offer its current evaluation results view. Default benchmark also still uses baseline-v2-freeze.json with all zero floors, which is explicitly coverage-only and does not detect material nonzero quality drops.",
+      "suggestion": "Root should integrate frozen fresh questions/labels/provenance, first-run receipt and reference-baseline.json into publishable evidence; surface both metric denominators and inspectable failures in the results view; wire the measured reference to regression checks. Preserve historical artifacts and do not rerun/tune the model to improve first-run outcomes. Verify results UI and a named metric-drop rejection against those exact artifacts."
+    },
+    {
+      "severity": "minor",
+      "confidence": "certain",
+      "file": "retrieval-eval-workbench/uv.lock:1416",
+      "issue": "Despite new CPU-source declarations and UV_TORCH_BACKEND=cpu, the frozen lock still resolves torch2.14.0 from PyPI with Linux CUDA-toolkit and nvidia packages. Local macOS inference passes but this is not evidence of a small CPU-only Linux container. Full Docker build/runtime after the change remains unverified.",
+      "suggestion": "Root should resolve a genuinely CPU-only Linux dependency set with compatible uv, inspect selected artifacts and run a bounded clean Docker build/health/query smoke before claiming container readiness. Record failure/blocker if environment resources prevent verification."
+    },
+    {
+      "severity": "minor",
+      "confidence": "certain",
+      "file": "retrieval-eval-workbench/src/retrieval_eval_workbench/evaluation.py:94",
+      "issue": "The metric called recall_at_3 is any-relevant-document hit rate. On multi-document questions it does not measure fraction/all required sources; labeled_support accepts one matching passage while critical_fact is the completeness gate. Fresh manifest documents this and provides supplemental all-document coverage.",
+      "suggestion": "Use precise labels in published metrics: any-hit@3, single-passage support, and complete critical facts. Display supplemental multi-document coverage and0/2 completeness; do not present partial support as complete multi-document answering."
+    }
+  ],
+  "checks": [
+    {
+      "name": "uv lock --check",
+      "status": "passed",
+      "evidence": "Resolved76 packages with no repository modifications. Passing consistency check does not mean requested CPU source changed locked Linux artifacts."
+    },
+    {
+      "name": "uv run --frozen pytest -q",
+      "status": "passed",
+      "evidence": "14 tests pass, including API parity,single initialization,forged citations,wrong facts,missing/NaN metrics and CLI failed receipt."
+    },
+    {
+      "name": "Independent original failure probes",
+      "status": "passed",
+      "evidence": "API parity,forged citation/source/fact rejection,11 pinned model hashes,tamper rejection,8-thread single constructor and exact clean package build all passed."
+    },
+    {
+      "name": "Historical preservation",
+      "status": "passed",
+      "evidence": "All22 original question objects match faee6bf exactly; wrapper adds version/status provenance. Historical benchmark is retained with unknown encoder revision clearly labeled."
+    },
+    {
+      "name": "Pre-evaluation independent freeze",
+      "status": "passed",
+      "evidence": "questions af7404765d45a3fa2e51cb3ec7dc7ab6df95f02ee98df8f4b37796c531d4e618; labels874ddb8eff8607aacfb144ef2bb7d94e446ec4c0dc85b465b101bd559cf2d767; manifest bd6a9b5d949e549d648cca18089f71e46115a911423ac6da1b5c7e55e29a89a5 announced before evaluation. Runner hash04075d790420880d02672f11e62920d1a4e5b06eb0ce3ada7ea3a9e29935fd2c frozen before invocation."
+    },
+    {
+      "name": "Exactly one actual offline evaluation pass",
+      "status": "passed",
+      "evidence": "Atomic exclusive run marker,source/config/question/model hashes validated;20 cases once per lexical and pinned semantic retriever;CPU2 Torch threads,offline snapshot only,exit0,no external cost. Full outputs/failures in retrieval-fresh-holdout/first-run.json."
+    },
+    {
+      "name": "Fresh task quality",
+      "status": "passed",
+      "evidence": "Measurement completed honestly; not an assertion of high accuracy. Lexical support12/14,semantic13/14; both critical-fact completion11/14 and physical citations14/14. Unsupported-request abstention lexical1/6,semantic2/6. Both multi-document cases retrieve both required docs but complete0/2."
+    },
+    {
+      "name": "Meaningful first-run reference and metric-drop negative check",
+      "status": "passed",
+      "evidence": "reference-baseline.json hash2a54a7589bc6e624a7b3afd4d0a59d783c7294ee4200ddb3e9ca3829af0fa0e5; preserved metrics pass, simulated semantic critical_fact_rate0 fails against measured11/14 reference. No new inference; simulation clearly labeled."
+    },
+    {
+      "name": "Final results UI integration and browser interaction",
+      "status": "not_run",
+      "evidence": "Root owns the final evidence/results-view integration and will produce concrete browser checks."
+    },
+    {
+      "name": "Full Linux Docker build/runtime",
+      "status": "not_run",
+      "evidence": "Clean wheel build verified README correction only; CPU package selection and full container flow pending root."
+    }
+  ],
+  "first_run_artifacts": {
+    "labels.json": "874ddb8eff8607aacfb144ef2bb7d94e446ec4c0dc85b465b101bd559cf2d767",
+    "first-run.json": "d3e25807067a0688863ed24bb6aab206c6d629a4b25110e23e567a7ac767bd93",
+    "run_once.py": "04075d790420880d02672f11e62920d1a4e5b06eb0ce3ada7ea3a9e29935fd2c",
+    "questions.json": "af7404765d45a3fa2e51cb3ec7dc7ab6df95f02ee98df8f4b37796c531d4e618",
+    "reference-baseline.json": "2a54a7589bc6e624a7b3afd4d0a59d783c7294ee4200ddb3e9ca3829af0fa0e5",
+    "manifest.json": "bd6a9b5d949e549d648cca18089f71e46115a911423ac6da1b5c7e55e29a89a5",
+    "regression-probe.json": "33cb34f01fe725f1bc1bb7b9fbea12b551600e78f8b34a5cb7f189e07a7dc758",
+    "freeze.json": "5fbdc216008fe59b165384672733cefc43de14b06610f401645a2763cee2eb88",
+    "run-marker.json": "fae7093a493a9f4c6ef6df1c14a7781c26d225068718b51013c1f5b298ae9133"
+  },
+  "limitations": [
+    "This is the one bounded correction re-review, not a third identical review cycle. Remaining exact integrations are escalated to root and must be verified there before full publication approval.",
+    "20 synthetic purposively selected questions; results are not statistically representative. Reviewer knew implementation and historical results, but did not author implementation and had not queried these fresh cases before freeze.",
+    "Both adversarial requests returned genuine but irrelevant corpus quotes, not fabricated credentials. They still fail the defined unsupported-request abstention test.",
+    "Single-line extraction misses incident-closure support and cannot complete the two multi-document questions; these losses remain in the first-run evidence. No arbitrary accuracy threshold or hidden tuning was introduced.",
+    "Subsequent uses of these now-exposed cases are regression checks, not fresh held-out evaluation.",
+    "No implementation edits, external model APIs, paid operation, publication or subagent spawning performed by reviewer."
+  ]
+}

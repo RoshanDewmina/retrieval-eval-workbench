@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_revision": "fd4c2d1",
+  "independent_first_run": {
+    "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+    "receipt": "evidence/independent-v2/first-run.json",
+    "status": "preserved_immutable_not_rerun",
+    "result_summary": {
+      "lexical": {"any_hit_at_3": "14/14", "citation_integrity": "14/14", "labeled_support": "12/14", "critical_fact_completion": "11/14", "unsupported_refusal": "1/6", "multi_document_complete": "0/2"},
+      "semantic": {"any_hit_at_3": "14/14", "citation_integrity": "14/14", "labeled_support": "13/14", "critical_fact_completion": "11/14", "unsupported_refusal": "2/6", "multi_document_complete": "0/2"}
+    }
+  },
+  "checks": [
+    {"command": "uv sync --frozen && make test", "status": "passed", "evidence": "16 tests passed; only third-party TestClient deprecation warnings."},
+    {"command": "docker run --rm -p 127.0.0.1:8313:8313 -e HF_HUB_OFFLINE=1 -v /Users/roshansilva/.cache/huggingface:/root/.cache/huggingface:ro career-retrieval:review", "status": "passed", "evidence": "Current fd4c2d1 image started with the pinned snapshot mounted read-only."},
+    {"command": "GET /health on 127.0.0.1:8313", "status": "passed", "evidence": "Returned status ok, service retrieval-eval-workbench, version 0.2.0."},
+    {"command": "POST /api/query lexical known development query", "status": "passed", "evidence": "Returned the availability line-5 retry quote with frozen lexical top_k=3 and score floor 0.0."},
+    {"command": "POST /api/query semantic known development query with HF_HUB_OFFLINE=1", "status": "passed", "evidence": "Returned routing line-5 quote using pinned semantic settings floor 0.2141905; no model download."},
+    {"command": "Playwright browser UI desktop, expanded independent failure, query, and 390px mobile", "status": "passed", "evidence": "Screenshots and interaction evidence are committed alongside this receipt."}
+  ],
+  "ui_artifacts": [
+    {"path":"evidence/ui-independent-desktop.png","sha256":"b367e8dc9a73bc1b441554b10794f8b33766eef007b9d5b1cb42440682633820","description":"Independent first-run metrics and case list at desktop viewport."},
+    {"path":"evidence/ui-independent-failure.png","sha256":"caaf2f32382e7a80ef26c76d032c157399962b18a087df6b02a10030d8c698f2","description":"Expanded fresh-09 failure shows valid but unsupported incident quote."},
+    {"path":"evidence/ui-query-semantic.png","sha256":"6c0f9395221537117a51b4b8421d10ab4e66bdafda9cec20b233e7d083f4252b","description":"Live semantic query, citation, ranked documents, and effective frozen settings."},
+    {"path":"evidence/ui-independent-mobile.png","sha256":"fe8a86049d7fe6b287c39af7f2681d2433a14fd5582e2b7cfc9d90828564f88c","description":"Independent evaluation view at 390 by 844 viewport."}
+  ],
+  "limitations": [
+    "The independent twenty-case first run is now exposed and may only be used for regression, not a new independent evaluation.",
+    "Unsupported-question refusal is weak and multi-document critical-fact completion was 0/2 in the preserved first run.",
+    "Container semantic verification required an existing read-only local Hugging Face cache and HF_HUB_OFFLINE=1; it does not prove an uncached deployment download flow.",
+    "No actual independent evaluation or full benchmark command was rerun during this acceptance pass."
+  ]
+}

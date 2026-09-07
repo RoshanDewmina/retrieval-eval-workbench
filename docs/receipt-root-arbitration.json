@@ -1,0 +1,25 @@
+{
+  "verdict": "approve",
+  "review_method": "Root escalation of bounded independent re-review integration findings",
+  "implementation_revision": "2a38870",
+  "first_run_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+  "resolved": [
+    {
+      "finding": "Current results/labels/reference absent from product",
+      "evidence": "Immutable first-run plus frozen inputs copied; API/results accessible; UI shows all20cases;16tests including CLI failreceipt and first-run metric-drop rejection pass."
+    },
+    {
+      "finding": "CPU container lock unresolved",
+      "evidence": "uv.lock now has Linux torch2.14+cpu and noCUDA; actualLinuxbuild/runtime lexical and semantic query passed with offline pinnedcache."
+    },
+    {
+      "finding": "Metric labels and mobile overflow",
+      "evidence": "Human any-hit labels,14answerable/6unsupported denominator text and wrapping added; root final browser check recorded separately."
+    }
+  ],
+  "limits": [
+    "First run never re-executed or tuned",
+    "Weak refusal and0/2multi-document completion remain explicit",
+    "Container cachedsemantic tested; uncacheddownload not independently verified"
+  ]
+}
