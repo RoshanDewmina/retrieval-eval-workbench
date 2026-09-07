@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Protocol
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from .data import Document
+from .data import Document, file_sha256, load_model_manifest
 
 
 @dataclass(frozen=True)
@@ -45,16 +46,30 @@ class SemanticRetriever:
 
     name = "semantic-all-MiniLM-L6-v2"
 
-    def __init__(self, documents: list[Document], model: EmbeddingModel | None = None) -> None:
+    def __init__(self, documents: list[Document], model: EmbeddingModel | None = None, model_manifest: dict | None = None) -> None:
         self.documents = documents
+        self.model_manifest = model_manifest or load_model_manifest()
         if model is None:
             from sentence_transformers import SentenceTransformer
+            from huggingface_hub import snapshot_download
 
-            model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device="cpu")
+            snapshot = snapshot_download(
+                repo_id=self.model_manifest["model_id"],
+                revision=self.model_manifest["revision"],
+            )
+            self._verify_snapshot(Path(snapshot))
+            model = SentenceTransformer(snapshot, device="cpu")
         self.model = model
         self.embeddings = self.model.encode(
             [f"{doc.title}. {doc.text}" for doc in documents], normalize_embeddings=True, show_progress_bar=False
         )
+
+    def _verify_snapshot(self, snapshot: Path) -> None:
+        """Fail closed when a pinned model file differs from the approved manifest."""
+        for expected in self.model_manifest["files"]:
+            path = snapshot / expected["path"]
+            if not path.is_file() or file_sha256(path) != expected["sha256"]:
+                raise ValueError(f"model manifest mismatch for {expected['path']}")
 
     def search(self, query: str, limit: int = 3) -> list[SearchHit]:
         query_embedding = self.model.encode([query], normalize_embeddings=True, show_progress_bar=False)[0]

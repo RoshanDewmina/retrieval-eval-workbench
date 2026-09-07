@@ -10,10 +10,10 @@ A local workbench for comparing a lexical TF-IDF baseline with real dense semant
 versioned corpus + hashes ──> lexical TF-IDF ───┐
                          └─> local MiniLM dense ─┼─> ranked documents
                                                    └─> extractive answer + citation
-held-out questions ─────────────────────────────────> metrics, examples, regression gate
+exposed development questions ───────────────────────> regression metrics and examples
 ```
 
-The semantic path loads `sentence-transformers/all-MiniLM-L6-v2` on CPU and uses normalized dense-vector dot products. It is not a lexical weighting scheme labeled as semantic retrieval. The model card describes it as a 384-dimensional sentence/paragraph embedding model for semantic search and lists Apache-2.0; the first run downloads model files into the normal Hugging Face cache. See the [model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), [license](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/main/LICENSE), and [Sentence Transformers semantic-search guidance](https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html).
+The semantic path loads a pinned `sentence-transformers/all-MiniLM-L6-v2` revision on CPU and uses normalized dense-vector dot products. `data/model-manifest-v1.json` records the immutable revision, license, and SHA-256 values for the required snapshot files; a mismatched snapshot fails closed. The earlier receipt did not record that information and is explicitly marked as provenance-unknown. See the [model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), [license](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/main/LICENSE), and [Sentence Transformers semantic-search guidance](https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html).
 
 ## Quick start
 
@@ -63,24 +63,24 @@ Example response:
 
 `data/corpus/` contains ten original, fictional Meridian Support Service documents. They are synthetic documentation, are licensed MIT with this repository, and have a SHA-256 recorded in `data/manifest.json`; the loader refuses a modified document. The `example.invalid` URLs are stable provenance identifiers, not external sources.
 
-`data/questions.json` has eight tuning questions and fourteen held-out test questions, including four unanswerable cases. There is no training split because the project does not train a retriever. The fixed tuning set may select the unanswerable threshold; held-out questions are reserved for reporting. The manifest records the split, IDs, seed, licenses, hashes, and limitations.
+`data/question_sets/v1.0.0-original-exposed.json` preserves the original set and `data/questions.json` records its evolved v1.1.0 form. Both are exposed development/regression history, not independent held-out evaluation. `data/calibration-v1.json` freezes serving and evaluation defaults from that development history; the API returns the effective values and configuration fingerprint. Root must independently author and freeze a new evaluation set before final reporting, and it must never drive correction or calibration.
 
-`make benchmark` runs both retrievers on held-out questions and writes a receipt to `evidence/benchmarks/latest.json`. It reports Recall@3, MRR@3, citation correctness, grounded-answer rate, unanswerable correctness, and every inspectable example. A run exits nonzero when a metric falls below `evidence/baseline.json`; baseline floors are versioned and must be updated deliberately with a receipt.
+`make benchmark` uses the frozen configuration and writes a new receipt to `evidence/benchmarks/frozen-run.json`. It reports Recall@3, MRR@3, citation integrity, labeled source support, critical-fact correctness, an explicitly named term-overlap proxy, unanswerable correctness, and every inspectable example. It fails closed for missing retrievers, metrics, and non-finite values; failed runs record their real nonzero exit status. `evidence/benchmarks/latest.json` is preserved historical development evidence only.
 
-Grounding is intentionally deterministic and extractive: it selects one sentence from retrieved documents and returns that sentence as the answer with an exact document line. Citation correctness means the cited document is one of the question's expected relevant documents. A grounded-answer score additionally requires enough expected-answer term overlap. This avoids relying on an uncalibrated model judge, but it does not measure fluent synthesis, comprehensive answers, or real-world factual accuracy.
+Grounding is intentionally deterministic and extractive: it returns one corpus sentence with an exact physical line. Evaluation verifies the citation's document ID, immutable source URL, physical range, exact quote, matching answer text, and a labeled supporting passage. Critical-fact checks require labeled phrases such as `eight hours`; the term-overlap value is retained as a separate, weaker proxy. This avoids relying on an uncalibrated model judge, but it does not measure fluent synthesis, comprehensive answers, or real-world factual accuracy.
 
 ## Tradeoffs and limits
 
 - The corpus is small and original synthetic data. Results are a local regression signal, not a statistically conclusive or production claim.
 - Dense retrieval is CPU-only and caches the corpus embeddings only in process. It is suitable for a local demo, not a large-corpus vector index.
-- The unanswerable detector is a tuned score threshold. Out-of-domain queries can still retrieve superficially related material.
+- The unanswerable detector uses frozen development configuration. Out-of-domain queries can still retrieve superficially related material.
 - The answerer quotes a single supporting sentence. It does not compose multi-document answers or verify citations beyond the versioned local corpus.
 - The Docker image runs locally and downloads no model during build. Run a semantic query or benchmark after starting it to populate the runtime cache.
 
 ## Repository contents
 
 - `src/`: FastAPI service, retrieval implementations, extractive answerer, and evaluator.
-- `data/`: versioned corpus, manifest with hashes, and held-out questions.
+- `data/`: versioned corpus, exposed development lineage, frozen settings, labels, and model manifest.
 - `evidence/`: benchmark receipts, regression baseline, and resume-safe claims.
 - `tests/`: hash, retrieval, citation, semantic-vector, and API contract checks.
 - `INTERVIEW_GUIDE.md`: design decisions, limitations, and exercises.

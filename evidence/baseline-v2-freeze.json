@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "status": "pre_independent_evaluation_coverage_gate",
+  "minimum_metrics": {
+    "lexical-tfidf": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_integrity_rate": 0.0, "labeled_support_rate": 0.0, "critical_fact_rate": 0.0, "answer_term_overlap_proxy": 0.0, "unanswerable_correct_rate": 0.0},
+    "semantic-all-MiniLM-L6-v2": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_integrity_rate": 0.0, "labeled_support_rate": 0.0, "critical_fact_rate": 0.0, "answer_term_overlap_proxy": 0.0, "unanswerable_correct_rate": 0.0}
+  },
+  "limitations": ["This validates complete finite metric coverage only until root freezes independently authored evaluation cases and deliberate floors."]
+}

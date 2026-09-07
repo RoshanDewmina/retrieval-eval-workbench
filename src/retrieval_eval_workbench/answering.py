@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from .data import Document
 from .retrieval import Retriever, SearchHit
 
 
@@ -29,6 +30,19 @@ class GroundedAnswer:
 
 def tokens(text: str) -> set[str]:
     return {token for token in re.findall(r"[a-z0-9]+", text.lower()) if token not in STOPWORDS}
+
+
+def citation_matches_corpus(citation: Citation, documents: list[Document]) -> bool:
+    """Check document identity, physical source range, quote, and immutable source URL."""
+    document = next((item for item in documents if item.id == citation.document_id), None)
+    if document is None or document.source_url != citation.source_url:
+        return False
+    if citation.line_start < 1 or citation.line_end != citation.line_start:
+        return False
+    lines = document.text.splitlines()
+    if citation.line_start > len(lines):
+        return False
+    return lines[citation.line_start - 1].strip() == citation.quote
 
 
 def answer_query(retriever: Retriever, query: str, limit: int = 3, minimum_score: float = 0.16) -> GroundedAnswer:

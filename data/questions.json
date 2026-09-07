@@ -1,6 +1,8 @@
 {
   "dataset_id": "meridian-service-docs-qa",
-  "version": "1.0.0",
+  "version": "1.1.0-exposed-development",
+  "evaluation_status": "exposed_development_regression_history",
+  "lineage": "This evolved set was changed during development after v1.0.0. It is retained for regression inspection and must not be called independent held-out evaluation.",
   "license": "MIT",
   "questions": [
     {"id":"tune-01","split":"tuning","question":"How long does a passwordless sign-in link remain valid?","answerable":true,"relevant_document_ids":["authentication"],"expected_answer":"A sign-in link expires after fifteen minutes."},

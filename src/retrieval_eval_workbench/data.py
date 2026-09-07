@@ -4,6 +4,7 @@ import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -36,6 +37,17 @@ class Question:
     answerable: bool
     relevant_document_ids: tuple[str, ...]
     expected_answer: str
+    supporting_citations: tuple["ExpectedCitation", ...] = ()
+    required_answer_phrases: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class ExpectedCitation:
+    document_id: str
+    line_start: int
+    line_end: int
+    quote: str
+    source_url: str
 
 
 def load_documents(data_dir: Path = DATA_DIR) -> list[Document]:
@@ -57,6 +69,8 @@ def load_questions(data_dir: Path = DATA_DIR) -> list[Question]:
     if hashlib.sha256(path.read_bytes()).hexdigest() != manifest["questions_sha256"]:
         raise ValueError("hash mismatch for questions.json")
     payload = json.loads(path.read_text())
+    labels_path = data_dir / "development-labels-v1.json"
+    labels: dict[str, Any] = json.loads(labels_path.read_text())["labels"] if labels_path.exists() else {}
     return [
         Question(
             id=item["id"],
@@ -65,6 +79,30 @@ def load_questions(data_dir: Path = DATA_DIR) -> list[Question]:
             answerable=item["answerable"],
             relevant_document_ids=tuple(item["relevant_document_ids"]),
             expected_answer=item["expected_answer"],
+            supporting_citations=tuple(ExpectedCitation(**citation) for citation in labels.get(item["id"], {}).get("supporting_citations", [])),
+            required_answer_phrases=tuple(labels.get(item["id"], {}).get("required_answer_phrases", [])),
         )
         for item in payload["questions"]
     ]
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text())
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_frozen_settings(data_dir: Path = DATA_DIR) -> dict[str, Any]:
+    path = data_dir / "calibration-v1.json"
+    settings = load_json(path)
+    settings["fingerprint"] = file_sha256(path)
+    return settings
+
+
+def load_model_manifest(data_dir: Path = DATA_DIR) -> dict[str, Any]:
+    path = data_dir / "model-manifest-v1.json"
+    model = load_json(path)
+    model["fingerprint"] = file_sha256(path)
+    return model

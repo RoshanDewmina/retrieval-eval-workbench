@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "frozen_development_configuration",
+  "derived_from": "exposed question history only; it must not be changed using a fresh independent evaluation set",
+  "question_set_version": "1.1.0-exposed-development",
+  "top_k": 3,
+  "retrievers": {
+    "lexical": {"name": "lexical-tfidf", "minimum_score": 0.0},
+    "semantic": {"name": "semantic-all-MiniLM-L6-v2", "minimum_score": 0.2141905}
+  }
+}
