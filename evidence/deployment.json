@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-09-07T05:03:13Z",
+  "deployed_revision": "d41708ca39a8fda66a05a246daa29a1a9bbf2d7b",
+  "source_url": "https://github.com/RoshanDewmina/retrieval-eval-workbench/tree/d41708ca39a8fda66a05a246daa29a1a9bbf2d7b",
+  "static_page_url": "https://roshandewmina.github.io/retrieval-eval-workbench/",
+  "provider": {
+    "name": "GitHub Pages",
+    "plan": "free",
+    "external_cost_usd": 0
+  },
+  "checks": [
+    {
+      "name": "public_source",
+      "status": "passed",
+      "revision": "d41708ca39a8fda66a05a246daa29a1a9bbf2d7b",
+      "url": "https://github.com/RoshanDewmina/retrieval-eval-workbench/tree/d41708ca39a8fda66a05a246daa29a1a9bbf2d7b"
+    },
+    {
+      "name": "static_page_http",
+      "status": "passed",
+      "http_status": 200,
+      "url": "https://roshandewmina.github.io/retrieval-eval-workbench/"
+    },
+    {
+      "name": "published_first_run_receipt",
+      "status": "passed",
+      "url": "https://roshandewmina.github.io/retrieval-eval-workbench/receipt-first-run.json",
+      "source_revision": "661852a370ab35d6747a8bedab2a6b16864e9ccb",
+      "retrievers": ["lexical", "semantic"],
+      "measurement_kind": "one_actual_local_pass_after_independent_question_and_code_freeze"
+    },
+    {
+      "name": "static_ui_desktop",
+      "status": "passed",
+      "viewport": "desktop default",
+      "evidence": "Visible static-evidence disclosure, frozen 20-case metrics, retained failure limits, and a first-run receipt link; no interactive deployed backend control.",
+      "screenshot": "evidence/ui-public.png",
+      "screenshot_sha256": "617fd4f3ae7da5207c1537adeb2ce0013a51c1997608475b5ee9134d4ad9682b"
+    },
+    {
+      "name": "static_ui_mobile",
+      "status": "passed",
+      "viewport": "390x844",
+      "evidence": "The static disclosure and the 20-case, 11/14, and 1/6 versus 2/6 metric cards remain readable without horizontal overflow."
+    }
+  ],
+  "flow": "The public GitHub source and GitHub Pages site present a static summary of the immutable first-run receipt. The Pages site does not issue live retrieval or inference requests.",
+  "remaining_live_backend_blocker": "GitHub Pages is static hosting. A live query endpoint would require a separately deployed FastAPI service with isolated CPU and memory, plus the pinned semantic model cache; none is deployed or claimed here."
+}
