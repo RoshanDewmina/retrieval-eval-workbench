@@ -1,0 +1,24 @@
+{
+  "dataset_id": "meridian-service-docs",
+  "version": "1.0.0",
+  "license": "MIT",
+  "source_urls": ["https://example.invalid/meridian-service-docs/original"],
+  "split_method": "Questions are split by fixed IDs: 8 tuning questions may select the unanswerable threshold; 14 held-out test questions are never used to select settings. All 10 corpus documents remain searchable in both splits because this is a retrieval task, not document-level training.",
+  "seed": 17,
+  "train_identities": [],
+  "tuning_identities": ["tune-01", "tune-02", "tune-03", "tune-04", "tune-05", "tune-06", "tune-07", "tune-08"],
+  "test_identities": ["test-01", "test-02", "test-03", "test-04", "test-05", "test-06", "test-07", "test-08", "test-09", "test-10", "test-11", "test-12", "test-13", "test-14"],
+  "limitations": ["This is original synthetic service documentation, not a representative production corpus.", "The source URL is an identifier only; all corpus text is versioned locally in this repository.", "No supervised model training is performed."],
+  "documents": [
+    {"id":"authentication","title":"Authentication and sessions","path":"corpus/authentication.md","source_url":"https://example.invalid/meridian-service-docs/authentication","sha256":"11e3824a793c643e34405427729f6f2504e835767997a2eb1cfa62e7b8ac6b4b"},
+    {"id":"availability","title":"Availability targets","path":"corpus/availability.md","source_url":"https://example.invalid/meridian-service-docs/availability","sha256":"6afc266a33599fe418664b5b2b0c0a9d4184bafe710e478ec4f82f6fd46f9794"},
+    {"id":"exports","title":"Reports and exports","path":"corpus/exports.md","source_url":"https://example.invalid/meridian-service-docs/exports","sha256":"c7183940f9ed7c9d8136a07061e0b66985e6dcb8861fca1ddb06f183b14b3d4e"},
+    {"id":"imports","title":"Importing service records","path":"corpus/imports.md","source_url":"https://example.invalid/meridian-service-docs/imports","sha256":"47eb21351420ef55a13e2afd03fb19532bfd164281561c6a4dfaa74d13d935c2"},
+    {"id":"incidents","title":"Incident response","path":"corpus/incidents.md","source_url":"https://example.invalid/meridian-service-docs/incidents","sha256":"637b86efcfbb6916657ddb65830a416901bcd8a3da36bbbd2f2dbc7999ba902c"},
+    {"id":"notifications","title":"Notifications","path":"corpus/notifications.md","source_url":"https://example.invalid/meridian-service-docs/notifications","sha256":"7af40def82a288fc6caa525a9a3266d0f0e2fd596a7c808362a76d4ee89b2206"},
+    {"id":"quality","title":"Quality review","path":"corpus/quality.md","source_url":"https://example.invalid/meridian-service-docs/quality","sha256":"d4252988125d0e9186c9e0218b897a0ad4431dd7196419eced6f78747600ddd2"},
+    {"id":"retention","title":"Retention and deletion","path":"corpus/retention.md","source_url":"https://example.invalid/meridian-service-docs/retention","sha256":"e2e543d82fde95cefe7ac258dcb0a26adfaf78b2be6ec92833b6985ee3d17821"},
+    {"id":"roles","title":"Roles and access review","path":"corpus/roles.md","source_url":"https://example.invalid/meridian-service-docs/roles","sha256":"30d1cdf9eea0fffadd5b453bcd0cbb53d29627f006a926fc2e71606f6e844bed"},
+    {"id":"routing","title":"Case routing rules","path":"corpus/routing.md","source_url":"https://example.invalid/meridian-service-docs/routing","sha256":"4db5c7fa3d5f5031c1755572f50baf2d5f0e4a4ad1487c4a19e93e5e39e50e23"}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "description": "Initial regression floor. It is replaced with measured, versioned floors after the first successful benchmark.",
+  "minimum_metrics": {
+    "lexical-tfidf": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_correct_rate": 0.0, "grounded_answer_rate": 0.0, "unanswerable_correct_rate": 0.0},
+    "semantic-all-MiniLM-L6-v2": {"recall_at_3": 0.0, "mrr_at_3": 0.0, "citation_correct_rate": 0.0, "grounded_answer_rate": 0.0, "unanswerable_correct_rate": 0.0}
+  }
+}

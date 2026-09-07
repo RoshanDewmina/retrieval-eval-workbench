@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+evidence/benchmarks/latest.json
+evidence/benchmarks/*.tmp
