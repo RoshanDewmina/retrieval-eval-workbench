@@ -1,4 +1,4 @@
-# Retrieval Eval Workbench
+# Document Search Evaluator
 
 A local workbench for comparing a lexical TF-IDF baseline with real dense semantic retrieval, then producing a deterministic extractive answer with an inspectable line-level citation. It is deliberately narrow: the goal is to make retrieval and grounding behavior measurable, reproducible, and easy to inspect.
 
