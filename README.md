@@ -63,7 +63,7 @@ Example response:
 
 `data/corpus/` contains ten original, fictional Meridian Support Service documents. They are synthetic documentation, are licensed MIT with this repository, and have a SHA-256 recorded in `data/manifest.json`; the loader refuses a modified document. The `example.invalid` URLs are stable provenance identifiers, not external sources.
 
-`data/question_sets/v1.0.0-original-exposed.json` preserves the original set and `data/questions.json` records its evolved v1.1.0 form. Both are exposed development/regression history, not independent held-out evaluation. `data/calibration-v1.json` freezes serving and evaluation defaults from that development history; the API returns the effective values and configuration fingerprint. An independent reviewer authored and froze twenty new cases after source `661852a`, then executed exactly one offline pass. The complete original runner, freeze, manifests and first-run receipt are preserved in `evidence/independent-v2/`; neither inference logic nor calibration changed after seeing those outcomes.
+`data/question_sets/v1.0.0-original-exposed.json` preserves the original set and `data/questions.json` records its evolved v1.1.0 form. Both are exposed development/regression history, not independent held-out evaluation. `data/calibration-v1.json` freezes serving and evaluation defaults from that development history; the API returns the effective values and configuration fingerprint. Twenty new held-out cases were authored and frozen separately from the implementation after source `661852a`, then executed in exactly one offline pass. The complete original runner, freeze, manifests and first-run receipt are preserved in `evidence/independent-v2/`; neither inference logic nor calibration changed after seeing those outcomes.
 
 `make benchmark` re-runs that now-exposed independent set against the frozen first-run metric reference and writes a separate regression receipt to `evidence/benchmarks/frozen-run.json`. It reports Recall@3, MRR@3, citation integrity, labeled source support, critical-fact correctness, an explicitly named term-overlap proxy, unanswerable correctness, and every inspectable example. It fails closed for missing retrievers, metrics, and non-finite values; failed runs record their real nonzero exit status. `evidence/benchmarks/latest.json` is preserved historical development evidence only.
 
@@ -81,9 +81,8 @@ Grounding is intentionally deterministic and extractive: it returns one corpus s
 
 - `src/`: FastAPI service, retrieval implementations, extractive answerer, and evaluator.
 - `data/`: versioned corpus, exposed development lineage, frozen settings, labels, and model manifest.
-- `evidence/`: benchmark receipts, regression baseline, and resume-safe claims.
+- `evidence/`: benchmark receipts and regression baseline.
 - `tests/`: hash, retrieval, citation, semantic-vector, and API contract checks.
-- `INTERVIEW_GUIDE.md`: design decisions, limitations, and exercises.
 
 ## Independent first-run outcomes
 
